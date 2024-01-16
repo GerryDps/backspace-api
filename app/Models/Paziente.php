@@ -15,4 +15,11 @@ class Paziente extends Model
     * @var string
     */
     protected $table = 'Paziente';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['password'];
 }

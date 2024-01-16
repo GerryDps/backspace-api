@@ -13,6 +13,7 @@ class MedicoController extends Controller
     public function index()
     {
         //
+        return '{}';
     }
 
     /**
@@ -20,7 +21,16 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $medico = new Medico;
+ 
+        $medico->email = $request->email;
+        $medico->nome = $request->nome;
+        $medico->cognome = $request->cognome;
+        $medico->datadinascita = $request->datadinascita;
+        $medico->password = password_hash($request->password,PASSWORD_DEFAULT);
+ 
+        $medico->save();
+        return $this->show($medico);
     }
 
     /**
@@ -29,6 +39,7 @@ class MedicoController extends Controller
     public function show(Medico $medico)
     {
         //
+        return ''.$medico;
     }
 
     /**
@@ -36,7 +47,20 @@ class MedicoController extends Controller
      */
     public function update(Request $request, Medico $medico)
     {
-        //
+        if(isset($request->email)){
+            $medico->email = $request->email;
+        }
+        if(isset($request->nome)){
+            $medico->nome = $request->nome;
+        }
+        if(isset($request->cognome)){
+            $medico->cognome = $request->cognome;
+        }
+        if(isset($request->datadinascita)){
+            $medico->datadinascita = $request->datadinascita;
+        }
+        $medico->save();
+        return $this->show($medico);
     }
 
     /**
@@ -44,6 +68,7 @@ class MedicoController extends Controller
      */
     public function destroy(Medico $medico)
     {
-        //
+        $medico->delete();
+        return '{}';
     }
 }

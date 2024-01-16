@@ -15,4 +15,11 @@ class Medico extends Model
     * @var string
     */
     protected $table = 'Medico';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['password'];
 }
