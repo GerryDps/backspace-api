@@ -12,8 +12,8 @@ class MedicoController extends Controller
      */
     public function index()
     {
-        //
-        return '{}';
+        $medico = new Medico;
+        return $medico->get();
     }
 
     /**

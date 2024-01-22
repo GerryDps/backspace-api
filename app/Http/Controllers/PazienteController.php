@@ -12,8 +12,8 @@ class PazienteController extends Controller
      */
     public function index()
     {
-        //
-        return '{}';
+        $paziente = new Paziente;
+        return $paziente->get();
     }
 
     /**
