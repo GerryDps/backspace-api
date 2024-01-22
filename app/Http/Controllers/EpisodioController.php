@@ -12,7 +12,8 @@ class EpisodioController extends Controller
      */
     public function index()
     {
-        //
+        $episodio = new Episodio;
+        return $episodio->get();
     }
 
     /**
@@ -20,7 +21,14 @@ class EpisodioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $episodio = new Episodio;
+ 
+        $episodio->timestamp = $request->timestamp;
+        $episodio->intensita = $request->intensita;
+        $episodio->descrizione = $request->descrizione;
+ 
+        $episodio->save();
+        return $this->show($episodio);
     }
 
     /**
@@ -29,6 +37,7 @@ class EpisodioController extends Controller
     public function show(Episodio $episodio)
     {
         //
+        return ''.$episodio;
     }
 
     /**
@@ -36,7 +45,18 @@ class EpisodioController extends Controller
      */
     public function update(Request $request, Episodio $episodio)
     {
-        //
+        if(isset($request->timestamp)){
+            $episodio->timestamp = $request->timestamp;
+        }
+        if(isset($request->intensita)){
+            $episodio->intensita = $request->intensita;
+        }
+        if(isset($request->descrizione)){
+            $episodio->descrizione = $request->descrizione;
+        }
+        
+        $episodio->save();
+        return $this->show($episodio);
     }
 
     /**
@@ -44,6 +64,7 @@ class EpisodioController extends Controller
      */
     public function destroy(Episodio $episodio)
     {
-        //
+        $episodio->delete();
+        return '{}';
     }
 }

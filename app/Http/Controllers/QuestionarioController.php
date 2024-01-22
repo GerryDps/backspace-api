@@ -12,7 +12,8 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        //
+        $questionario = new Questionario;
+        return $questionario->get();
     }
 
     /**
@@ -20,7 +21,12 @@ class QuestionarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $questionario = new Questionario;
+ 
+        $questionario->paziente_id = $request->paziente_id;
+ 
+        $questionario->save();
+        return $this->show($questionario);
     }
 
     /**
@@ -29,6 +35,7 @@ class QuestionarioController extends Controller
     public function show(Questionario $questionario)
     {
         //
+        return ''.$questionario;
     }
 
     /**
@@ -36,7 +43,7 @@ class QuestionarioController extends Controller
      */
     public function update(Request $request, Questionario $questionario)
     {
-        //
+        return '{}';
     }
 
     /**
@@ -44,6 +51,7 @@ class QuestionarioController extends Controller
      */
     public function destroy(Questionario $questionario)
     {
-        //
+        $questionario->delete();
+        return '{}';
     }
 }

@@ -12,7 +12,8 @@ class EsercizioController extends Controller
      */
     public function index()
     {
-        //
+        $esercizio = new Esercizio;
+        return $esercizio->get();
     }
 
     /**
@@ -20,7 +21,14 @@ class EsercizioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $esercizio = new Esercizio;
+        
+        $esercizio->nome = $request->nome;
+        $esercizio->descrizione = $request->descrizione;
+        $esercizio->video = $request->video;
+ 
+        $esercizio->save();
+        return $this->show($esercizio);
     }
 
     /**
@@ -29,6 +37,7 @@ class EsercizioController extends Controller
     public function show(Esercizio $esercizio)
     {
         //
+        return ''.$esercizio;
     }
 
     /**
@@ -36,7 +45,18 @@ class EsercizioController extends Controller
      */
     public function update(Request $request, Esercizio $esercizio)
     {
-        //
+        if(isset($request->nome)){
+            $esercizio->nome = $request->nome;
+        }
+        if(isset($request->descrizione)){
+            $esercizio->descrizione = $request->descrizione;
+        }
+        if(isset($request->video)){
+            $esercizio->video = $request->video;
+        }
+        
+        $esercizio->save();
+        return $this->show($esercizio);
     }
 
     /**
@@ -44,6 +64,7 @@ class EsercizioController extends Controller
      */
     public function destroy(Esercizio $esercizio)
     {
-        //
+        $esercizio->delete();
+        return '{}';
     }
 }
