@@ -11,7 +11,7 @@ class UpdatePazienteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,12 +22,12 @@ class UpdatePazienteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|max:255',
+            'email' => 'required|email|max:255',
             'nome' => 'required|max:255',
             'cognome' => 'required|max:255',
-            'datadinascita' => 'required',
+            'datadinascita' => 'required|date',
             'tipo' => 'required|max:255',
-            'medico_id' => 'required',
+            'medico_id' => 'required|integer|exists:App\Models\Medico,id',
         ];
     }
 }

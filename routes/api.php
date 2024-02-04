@@ -8,9 +8,7 @@ use App\Http\Controllers\TerapiaController;
 use App\Http\Controllers\PazienteController;
 use App\Http\Controllers\EsercizioController;
 use App\Http\Controllers\EpisodioController;
-use App\Http\Controllers\SigninUtente;
-use App\Models\Paziente;
-
+use App\Http\Controllers\UtenteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,22 +21,22 @@ use App\Models\Paziente;
 |
 */
 
-Route::middleware('auth:sanctum')->any('/checkToken', function (Request $request) {
+Route::middleware(['auth:sanctum','api'])->any('/checkToken', function (Request $request) {
     return "hai un token";
 });
 
 
-Route::middleware('auth:sanctum')->group(function () {
+/**
+ * Le risorse qui sono protette da autenticazione
+ * header={'Authorization': 'Bearer TOKEN'}
+ */
+Route::middleware(['auth:sanctum','api'])->group(function () {
     Route::resource('medico',MedicoController::class);
     Route::resource('terapia',TerapiaController::class);
     Route::resource('paziente',PazienteController::class);
     Route::resource('esercizio',EsercizioController::class);
     Route::resource('episodio',EpisodioController::class);
 });
-
-
-
-//Route::post('/login', [SigninUtente::class, 'login']);
 
 
 /**
@@ -49,19 +47,10 @@ Route::middleware('api')->group(function () {
     /**
     * Routes that require session data
     */
-    Route::post('/login', function (Request $request, Response $response) {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-     
-        $paziente = Paziente::where('email', $request->email)->first();
-     
-        if (! $paziente || ! password_verify($request->password, $paziente->password)) {
-            return $response;
-        }
 
-        $token = $paziente->createToken('paziente_token');
-        return ['token' => $token->plainTextToken];
-    })->name('login');
+    //SignupUtente->register()
+    Route::post('/register', [UtenteController::class, 'register'])->name('register');
+
+    //SigninUtente->login()
+    Route::post('/login', [UtenteController::class, 'login'])->name('login');
 });

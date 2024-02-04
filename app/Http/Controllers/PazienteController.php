@@ -11,14 +11,11 @@ use Illuminate\Support\Facades\DB;
 class PazienteController extends Controller
 {
     /**
-     * Get id by email
+     * Get paziente by email
      */
-    public function findByEmail(String $email)
+    public static function findByEmail(String $email)
     {
-        $paziente = DB::table('paziente')
-            ->select('id','password')
-            ->where('email', '=', $email)
-            ->get();
+        $paziente = Paziente::where('email', $email)->first();
         return $paziente;
     }
 
@@ -33,20 +30,23 @@ class PazienteController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * Requests/StorePazienteRequest fa la validazione
      */
     public function store(StorePazienteRequest $request)
     {
+        $validated = $request->validated();
+
         $paziente = new Paziente;
  
-        $paziente->email = $request->email;
-        $paziente->nome = $request->nome;
-        $paziente->cognome = $request->cognome;
-        $paziente->datadinascita = $request->datadinascita;
-        $paziente->tipo = $request->tipo;
-        $paziente->password = password_hash($request->password,PASSWORD_DEFAULT);
+        $paziente->email = $validated['email'];
+        $paziente->nome = $validated['nome'];
+        $paziente->cognome = $validated['cognome'];
+        $paziente->datadinascita = $validated['datadinascita'];
+        $paziente->tipo = $validated['tipo'];
+        $paziente->password = password_hash($validated['password'],PASSWORD_DEFAULT);
  
         $paziente->save();
-        return $this->show($paziente);
+        return $paziente;
     }
 
     /**
@@ -60,27 +60,19 @@ class PazienteController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * Requests/UpdatePazienteRequest fa la validazione
      */
     public function update(UpdatePazienteRequest $request, Paziente $paziente)
     {
-        if(isset($request->email)){
-            $paziente->email = $request->email;
-        }
-        if(isset($request->nome)){
-            $paziente->nome = $request->nome;
-        }
-        if(isset($request->cognome)){
-            $paziente->cognome = $request->cognome;
-        }
-        if(isset($request->datadinascita)){
-            $paziente->datadinascita = $request->datadinascita;
-        }
-        if(isset($request->tipo)){
-            $paziente->tipo = $request->tipo;
-        }
-        if(isset($request->medico_id)){
-            $paziente->medico_id = $request->medico_id;
-        }
+        $validated = $request->validated();
+
+        $paziente->email = $validated['email'];
+        $paziente->nome = $validated['nome'];
+        $paziente->cognome = $validated['cognome'];
+        $paziente->datadinascita = $validated['datadinascita'];
+        $paziente->tipo = $validated['tipo'];
+        $paziente->medico_id = $validated['medico_id'];
+
         $paziente->save();
         return $this->show($paziente);
     }
