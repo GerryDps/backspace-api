@@ -2,11 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePazienteRequest;
+use App\Http\Requests\UpdatePazienteRequest;
 use App\Models\Paziente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PazienteController extends Controller
 {
+    /**
+     * Get id by email
+     */
+    public function findByEmail(String $email)
+    {
+        $paziente = DB::table('paziente')
+            ->select('id','password')
+            ->where('email', '=', $email)
+            ->get();
+        return $paziente;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -19,7 +34,7 @@ class PazienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePazienteRequest $request)
     {
         $paziente = new Paziente;
  
@@ -46,7 +61,7 @@ class PazienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Paziente $paziente)
+    public function update(UpdatePazienteRequest $request, Paziente $paziente)
     {
         if(isset($request->email)){
             $paziente->email = $request->email;
