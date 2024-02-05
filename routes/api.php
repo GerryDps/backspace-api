@@ -48,9 +48,15 @@ Route::middleware('api')->group(function () {
     * Routes that require session data
     */
 
-    //SignupUtente->register()
+    //UtenteController->register()
     Route::post('/register', [UtenteController::class, 'register'])->name('register');
 
-    //SigninUtente->login()
+    //UtenteController->login()
     Route::post('/login', [UtenteController::class, 'login'])->name('login');
+
+    //UtenteController->forgotpassword()
+    Route::post('/forgot-password', [UtenteController::class,'forgotpassword'])->name('forgotpassword');
+
+    //UtenteController->resetpassword()
+    Route::post('/reset-password', [UtenteController::class,'resetpassword'])->name('resetpassword');
 });

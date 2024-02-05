@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class StorePazienteRequest extends FormRequest
 {
@@ -27,7 +28,12 @@ class StorePazienteRequest extends FormRequest
             'cognome' => 'required|max:255',
             'datadinascita' => 'required|date',
             'tipo' => 'required|max:255',
-            'password' => 'required|max:255', 
+            /* 'password' => ['required|max:255', Password::min(8)
+            ->letters()
+            ->mixedCase()
+            ->numbers()
+            ->symbols()], */
+            'password' => 'required|min:8|max:255', 
         ];
     }
 }
