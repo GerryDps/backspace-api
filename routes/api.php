@@ -21,8 +21,9 @@ use App\Http\Controllers\UtenteController;
 |
 */
 
+// questa funzione necessita di essere autenticato
 Route::middleware(['auth:sanctum','api'])->any('/checkToken', function (Request $request) {
-    return "hai un token";
+    return ['TOKEN'=> $request->user()->currentAccessToken(), 'PAZIENTE'=>$request->user()];
 });
 
 
@@ -31,6 +32,14 @@ Route::middleware(['auth:sanctum','api'])->any('/checkToken', function (Request 
  * header={'Authorization': 'Bearer TOKEN'}
  */
 Route::middleware(['auth:sanctum','api'])->group(function () {
+    /**
+     * Just the logout route protetta da sanctum
+     */
+    Route::post('/logout', [UtenteController::class, 'logout'])->name('logout');
+
+    /**
+     * Risorse, crea le route alle crud per ogni risorsa
+     */
     Route::resource('medico',MedicoController::class);
     Route::resource('terapia',TerapiaController::class);
     Route::resource('paziente',PazienteController::class);
@@ -45,7 +54,7 @@ Route::middleware(['auth:sanctum','api'])->group(function () {
 */
 Route::middleware('api')->group(function () {
     /**
-    * Routes that require session data
+    * Routes that require session data ma nessuna autorizzazione
     */
 
     //UtenteController->register()

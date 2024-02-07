@@ -9,10 +9,24 @@ use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\PazienteController;
 use App\Models\Paziente;
 use App\Http\Requests\StorePazienteRequest;
-use Illuminate\Support\Str;
+
 
 class UtenteController extends Controller
 {
+    /**
+    * register.
+    */
+    public function register(StorePazienteRequest $request, Response $response, PazienteController $pazienteController)
+    {
+        $paziente = $pazienteController->store($request);
+        if($paziente){
+            $token = $paziente->createToken('paziente_token');
+            return $response->setStatusCode(200)->setContent(['token' => $token->plainTextToken,'paziente' => $paziente]);
+        }else{
+            return $response->setStatusCode(400);
+        }
+    }
+
     /**
     * login.
     */
@@ -34,24 +48,11 @@ class UtenteController extends Controller
     }
 
     /**
-    * register.
-    */
-    public function register(StorePazienteRequest $request, Response $response, PazienteController $pazienteController)
-    {
-        $paziente = $pazienteController->store($request);
-        if($paziente){
-            $token = $paziente->createToken('paziente_token');
-            return $response->setStatusCode(200)->setContent(['token' => $token->plainTextToken,'paziente' => $paziente]);
-        }else{
-            return $response->setStatusCode(400);
-        }
-    }
-
-    /**
      * logout
      */
-    public function logout(Request $request, Response $response, PazienteController $pazienteController){
-
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+        return 'logged out';
     }
 
     /**
