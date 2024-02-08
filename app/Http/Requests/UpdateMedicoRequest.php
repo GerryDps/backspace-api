@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePazienteRequest extends FormRequest
+class UpdateMedicoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,6 @@ class UpdatePazienteRequest extends FormRequest
             'nome' => 'required|max:255',
             'cognome' => 'required|max:255',
             'datadinascita' => 'required|date',
-            'tipo' => 'required|max:255',
-            'medico_id' => 'integer|exists:App\Models\Medico,id',
         ];
     }
 }

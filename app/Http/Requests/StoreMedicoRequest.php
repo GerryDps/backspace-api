@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
-class UpdatePazienteRequest extends FormRequest
+class StoreMedicoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +23,16 @@ class UpdatePazienteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email|max:255',
+            'email' => 'required|unique:App\Models\Paziente,email|email|max:255',
             'nome' => 'required|max:255',
             'cognome' => 'required|max:255',
             'datadinascita' => 'required|date',
-            'tipo' => 'required|max:255',
-            'medico_id' => 'integer|exists:App\Models\Medico,id',
+            /* 'password' => ['required|max:255', Password::min(8)
+            ->letters()
+            ->mixedCase()
+            ->numbers()
+            ->symbols()], */
+            'password' => 'required|min:8|max:255', 
         ];
     }
 }
