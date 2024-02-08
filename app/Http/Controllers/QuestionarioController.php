@@ -12,8 +12,8 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        $questionario = new Questionario;
-        return $questionario->get();
+        $questionario = Questionario::all();
+        return $questionario;
     }
 
     /**
@@ -22,11 +22,14 @@ class QuestionarioController extends Controller
     public function store(Request $request)
     {
         $questionario = new Questionario;
+        $validated = $request->validate([
+            'paziente_id' => 'required|integer|exists:App\Models\Paziente,id',
+        ]);
  
-        $questionario->paziente_id = $request->paziente_id;
+        $questionario->paziente_id = $validated['paziente_id'];
  
         $questionario->save();
-        return $this->show($questionario);
+        return $questionario;
     }
 
     /**
@@ -35,7 +38,7 @@ class QuestionarioController extends Controller
     public function show(Questionario $questionario)
     {
         //
-        return ''.$questionario;
+        return $questionario;
     }
 
     /**
@@ -43,7 +46,7 @@ class QuestionarioController extends Controller
      */
     public function update(Request $request, Questionario $questionario)
     {
-        return '{}';
+        return $questionario;
     }
 
     /**

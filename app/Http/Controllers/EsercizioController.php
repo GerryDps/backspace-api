@@ -12,8 +12,8 @@ class EsercizioController extends Controller
      */
     public function index()
     {
-        $esercizio = new Esercizio;
-        return $esercizio->get();
+        $esercizio = Esercizio::all();
+        return $esercizio;
     }
 
     /**
@@ -21,14 +21,17 @@ class EsercizioController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nome'=> 'required|unique:App\Models\Esercizio,nome|max:255',
+            'descrizione'=> 'required|max:255',
+            'video'=> 'required|max:255',
+        ]);
         $esercizio = new Esercizio;
         
-        $esercizio->nome = $request->nome;
-        $esercizio->descrizione = $request->descrizione;
-        $esercizio->video = $request->video;
+        $esercizio->fill($validated);
  
         $esercizio->save();
-        return $this->show($esercizio);
+        return $esercizio;
     }
 
     /**
@@ -37,7 +40,7 @@ class EsercizioController extends Controller
     public function show(Esercizio $esercizio)
     {
         //
-        return ''.$esercizio;
+        return $esercizio;
     }
 
     /**
@@ -45,18 +48,17 @@ class EsercizioController extends Controller
      */
     public function update(Request $request, Esercizio $esercizio)
     {
-        if(isset($request->nome)){
-            $esercizio->nome = $request->nome;
-        }
-        if(isset($request->descrizione)){
-            $esercizio->descrizione = $request->descrizione;
-        }
-        if(isset($request->video)){
-            $esercizio->video = $request->video;
-        }
+        $validated = $request->validate([
+            'nome'=> 'required|unique:App\Models\Esercizio,nome|max:255',
+            'descrizione'=> 'required|max:255',
+            'video'=> 'required|max:255',
+        ]);
+        $esercizio = new Esercizio;
         
+        $esercizio->fill($validated);
+ 
         $esercizio->save();
-        return $this->show($esercizio);
+        return $esercizio;
     }
 
     /**

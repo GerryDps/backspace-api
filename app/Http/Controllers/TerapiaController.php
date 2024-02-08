@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Terapia;
+use App\Models\MedicoTerapia;
 use Illuminate\Http\Request;
 
 class TerapiaController extends Controller
@@ -12,8 +13,25 @@ class TerapiaController extends Controller
      */
     public function index()
     {
+        $terapia = Terapia::all();
+        return $terapia;
+    }
+
+    /**
+     * Store a new terapy without medico_id only for internal use
+     */
+    protected function storeTerapia(Request $request)
+    {
+        $validated = $request->validate([
+            'nome' => 'required|unique:App\Models\Terapia,nome|max:255',
+        ]);
         $terapia = new Terapia;
-        return $terapia->get();
+
+        $terapia->nome = $validated['nome'];
+ 
+        $terapia->save();
+
+        return $terapia;
     }
 
     /**
@@ -21,12 +39,24 @@ class TerapiaController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nome' => 'required|unique:App\Models\Terapia,nome|max:255',
+            'medico_id' => 'required|exists:App\Models\Medico,id|integer',
+        ]);
         $terapia = new Terapia;
 
-        $terapia->nome = $request->nome;
+        $terapia->nome = $validated['nome'];
  
         $terapia->save();
-        return $this->show($terapia);
+        /**
+         * Creazione della relazione usando la table MedicoTerapia
+         */
+        $relazione = new MedicoTerapia;
+        $relazione->medico_id = $validated['medico_id'];
+        $relazione->terapia_id = $terapia->id;
+        $relazione->save();
+
+        return [$terapia,$relazione];
     }
 
     /**
@@ -35,7 +65,7 @@ class TerapiaController extends Controller
     public function show(Terapia $terapia)
     {
         //
-        return ''.$terapia;
+        return $terapia;
     }
 
     /**
@@ -43,12 +73,14 @@ class TerapiaController extends Controller
      */
     public function update(Request $request, Terapia $terapia)
     {
-        if(isset($request->nome)){
-            $terapia->nome = $request->nome;
-        }
+        $validated = $request->validate([
+            'nome' => 'required|unique:App\Models\Terapia,nome|max:255'
+        ]);
+        
+        $terapia->nome = $validated['nome'];
 
         $terapia->save();
-        return $this->show($terapia);
+        return $terapia;
     }
 
     /**

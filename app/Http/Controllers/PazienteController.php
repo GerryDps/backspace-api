@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePazienteRequest;
 use App\Http\Requests\UpdatePazienteRequest;
-use App\Models\Paziente;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Paziente;
 
 class PazienteController extends Controller
 {
@@ -24,8 +23,8 @@ class PazienteController extends Controller
      */
     public function index()
     {
-        $paziente = new Paziente;
-        return $paziente->get();
+        $paziente = Paziente::all();
+        return $paziente;
     }
 
     /**
@@ -55,7 +54,7 @@ class PazienteController extends Controller
     public function show(Paziente $paziente)
     {
         //
-        return ''.$paziente;
+        return $paziente;
     }
 
     /**
@@ -71,10 +70,27 @@ class PazienteController extends Controller
         $paziente->cognome = $validated['cognome'];
         $paziente->datadinascita = $validated['datadinascita'];
         $paziente->tipo = $validated['tipo'];
-        $paziente->medico_id = $validated['medico_id'];
-
+        if(isset($validated['medico_id']))$paziente->medico_id = $validated['medico_id'];
+        
         $paziente->save();
-        return $this->show($paziente);
+        return $paziente;
+    }
+
+    /**
+     * Assegna un medico al paziente
+     * Come update è solo semplificata
+     * richiede solo medico_id
+     */
+    public function updateMedico(Request $request, Paziente $paziente)
+    {
+        $validated = $request->validate([
+            'medico_id'=> 'required|integer|exists:App\Models\Medico,id',
+        ]);
+
+        $paziente->medico_id = $validated['medico_id'];
+        
+        $paziente->save();
+        return $paziente;
     }
 
     /**
