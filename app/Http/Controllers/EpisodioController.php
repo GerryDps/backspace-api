@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Episodio;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
+enum Intensita: int {
+    case alta = 1;
+    case media = 2;
+    case bassa = 3;
+}
 
 class EpisodioController extends Controller
 {
@@ -12,8 +19,8 @@ class EpisodioController extends Controller
      */
     public function index()
     {
-        $episodio = new Episodio;
-        return $episodio->get();
+        $episodio = Episodio::all();
+        return $episodio;
     }
 
     /**
@@ -22,13 +29,18 @@ class EpisodioController extends Controller
     public function store(Request $request)
     {
         $episodio = new Episodio;
+
+        $validated = $request->validate([
+            'timestamp' => 'required|date',
+            'intensita' => ['required',Rule::enum(Intensita::class)],
+            'descrizione' => 'string|nullable|max:255',
+            'paziente_id' => 'required|integer|exists:App\Models\Paziente,id',
+        ]);
  
-        $episodio->timestamp = $request->timestamp;
-        $episodio->intensita = $request->intensita;
-        $episodio->descrizione = $request->descrizione;
+        $episodio->fill($validated);
  
         $episodio->save();
-        return $this->show($episodio);
+        return $episodio;
     }
 
     /**
@@ -37,7 +49,7 @@ class EpisodioController extends Controller
     public function show(Episodio $episodio)
     {
         //
-        return ''.$episodio;
+        return $episodio;
     }
 
     /**
@@ -45,18 +57,20 @@ class EpisodioController extends Controller
      */
     public function update(Request $request, Episodio $episodio)
     {
-        if(isset($request->timestamp)){
-            $episodio->timestamp = $request->timestamp;
-        }
-        if(isset($request->intensita)){
-            $episodio->intensita = $request->intensita;
-        }
-        if(isset($request->descrizione)){
-            $episodio->descrizione = $request->descrizione;
-        }
-        
+        $episodio = new Episodio;
+
+        $validated = $request->validate([
+            'timestamp' => 'required|date',
+            'intensita' => ['required',Rule::enum(Intensita::class)],
+            'descrizione' => 'string|nullable|max:255',
+        ]);
+ 
+        $episodio->timestamp = $validated['timestamp'];
+        $episodio->intensita = $validated['intensita'];
+        $episodio->descrizione = $validated['descrizione'];
+ 
         $episodio->save();
-        return $this->show($episodio);
+        return $episodio;
     }
 
     /**
