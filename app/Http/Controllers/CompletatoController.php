@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Completato;
 use Illuminate\Http\Request;
 
+/**
+ * Il paziente puo marcare un esercizio presente in una sua terapia
+ * come COMPLETATO. verrà salvata la data di completamento
+ */
+
 class CompletatoController extends Controller
 {
     /**
@@ -12,7 +17,8 @@ class CompletatoController extends Controller
      */
     public function index()
     {
-        //
+        $completato = Completato::all();
+        return $completato;
     }
 
     /**
@@ -20,7 +26,19 @@ class CompletatoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $completato = new Completato;
+
+        $validated = $request->validate([
+            'data' => 'required|date',
+            'pazienteterapia_paziente_id'=> 'required|integer|exists:App\Models\PazienteTerapia,id',
+            'terapia_terapia_id'=>'required|integer|exists:App\Models\Terapia,id',
+            'esercizioterapia_esercizio_idesercizio'=> 'required|integer|exists:App\Models\EsercizioTerapia,id',
+        ]);
+ 
+        $completato->fill($validated);
+ 
+        $completato->save();
+        return $completato;
     }
 
     /**
@@ -28,7 +46,7 @@ class CompletatoController extends Controller
      */
     public function show(Completato $completato)
     {
-        //
+        return $completato;
     }
 
     /**
@@ -36,7 +54,18 @@ class CompletatoController extends Controller
      */
     public function update(Request $request, Completato $completato)
     {
-        //
+        $validated = $request->validate([
+            'data' => 'required|date',
+            // non avrebbe senso effettuare l'update di questi campi. al massimo la data di completamento
+            //'pazienteterapia_paziente_id'=> 'required|integer|exists:App\Models\PazienteTerapia,id',
+            //'terapia_terapia_id'=>'required|integer|exists:App\Models\Terapia,id',
+            //'esercizioterapia_esercizio_idesercizio'=> 'required|integer|exists:App\Models\EsercizioTerapia,id',
+        ]);
+ 
+        $completato->data = $validated['data'];
+ 
+        $completato->save();
+        return $completato;
     }
 
     /**
@@ -44,6 +73,7 @@ class CompletatoController extends Controller
      */
     public function destroy(Completato $completato)
     {
-        //
+        $completato->delete();
+        return $completato;
     }
 }
