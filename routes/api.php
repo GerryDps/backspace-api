@@ -3,12 +3,20 @@
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MedicoController;
-use App\Http\Controllers\TerapiaController;
-use App\Http\Controllers\PazienteController;
-use App\Http\Controllers\EsercizioController;
+
+use App\Http\Controllers\CompletatoController;
 use App\Http\Controllers\EpisodioController;
+use App\Http\Controllers\EsercizioController;
+use App\Http\Controllers\EsercizioTerapiaController;
+use App\Http\Controllers\MedicoController;
+use App\Http\Controllers\PazienteController;
+use App\Http\Controllers\PazienteTerapiaController;
+use App\Http\Controllers\QuestionarioController;
+use App\Http\Controllers\TerapiaController;
 use App\Http\Controllers\UtenteController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +53,13 @@ Route::middleware(['auth:sanctum','api'])->group(function () {
     Route::resource('paziente',PazienteController::class);
     Route::resource('esercizio',EsercizioController::class);
     Route::resource('episodio',EpisodioController::class);
+    
+    Route::resource('pazienteterapia',PazienteTerapiaController::class);
+    Route::resource('completato',CompletatoController::class);
+    Route::resource('esercizioterapia',EsercizioTerapiaController::class);
+    Route::resource('questionario',QuestionarioController::class);
+
+
 });
 
 
