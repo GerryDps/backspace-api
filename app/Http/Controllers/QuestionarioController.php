@@ -23,10 +23,10 @@ class QuestionarioController extends Controller
     {
         $questionario = new Questionario;
         $validated = $request->validate([
-            'paziente_id' => 'required|integer|exists:App\Models\Paziente,id',
+            'patient_id' => 'required|integer|exists:App\Models\Paziente,id',
         ]);
  
-        $questionario->paziente_id = $validated['paziente_id'];
+        $questionario->patient_id = $validated['patient_id'];
  
         $questionario->save();
         return $questionario;

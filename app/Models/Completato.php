@@ -14,5 +14,5 @@ class Completato extends Model
     *
     * @var string
     */
-    protected $table = 'Completato';
+    protected $table = 'Completed';
 }

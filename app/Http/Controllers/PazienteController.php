@@ -38,10 +38,10 @@ class PazienteController extends Controller
         $paziente = new Paziente;
  
         $paziente->email = $validated['email'];
-        $paziente->nome = $validated['nome'];
-        $paziente->cognome = $validated['cognome'];
-        $paziente->datadinascita = $validated['datadinascita'];
-        $paziente->tipo = $validated['tipo'];
+        $paziente->name = $validated['name'];
+        $paziente->surname = $validated['surname'];
+        $paziente->birthday = $validated['birthday'];
+        $paziente->type = $validated['type'];
         $paziente->password = password_hash($validated['password'],PASSWORD_DEFAULT);
  
         $paziente->save();
@@ -66,11 +66,11 @@ class PazienteController extends Controller
         $validated = $request->validated();
 
         $paziente->email = $validated['email'];
-        $paziente->nome = $validated['nome'];
-        $paziente->cognome = $validated['cognome'];
-        $paziente->datadinascita = $validated['datadinascita'];
-        $paziente->tipo = $validated['tipo'];
-        if(isset($validated['medico_id']))$paziente->medico_id = $validated['medico_id'];
+        $paziente->name = $validated['name'];
+        $paziente->surname = $validated['surname'];
+        $paziente->birthday = $validated['birthday'];
+        $paziente->type = $validated['type'];
+        if(isset($validated['doctor_id']))$paziente->doctor_id = $validated['doctor_id'];
         
         $paziente->save();
         return $paziente;
@@ -84,10 +84,10 @@ class PazienteController extends Controller
     public function updateMedico(Request $request, Paziente $paziente)
     {
         $validated = $request->validate([
-            'medico_id'=> 'required|integer|exists:App\Models\Medico,id',
+            'doctor_id'=> 'required|integer|exists:App\Models\Medico,id',
         ]);
 
-        $paziente->medico_id = $validated['medico_id'];
+        $paziente->doctor_id = $validated['doctor_id'];
         
         $paziente->save();
         return $paziente;

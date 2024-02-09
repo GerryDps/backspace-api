@@ -14,5 +14,5 @@ class Questionario extends Model
     *
     * @var string
     */
-    protected $table = 'Questionario';
+    protected $table = 'Questionary';
 }

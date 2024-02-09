@@ -18,7 +18,7 @@ class Paziente extends Model implements CanResetPasswordContract
     *
     * @var string
     */
-    protected $table = 'Paziente';
+    protected $table = 'Patient';
 
     /**
      * The attributes that should be hidden for arrays.

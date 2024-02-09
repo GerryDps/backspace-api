@@ -14,5 +14,5 @@ class EsercizioTerapia extends Model
     *
     * @var string
     */
-    protected $table = 'EsercizioTerapia';
+    protected $table = 'ExerciseTherapy';
 }

@@ -14,5 +14,5 @@ class Episodio extends Model
     *
     * @var string
     */
-    protected $table = 'Episodio';
+    protected $table = 'Episode';
 }

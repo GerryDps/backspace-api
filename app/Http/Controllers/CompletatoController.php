@@ -29,10 +29,10 @@ class CompletatoController extends Controller
         $completato = new Completato;
 
         $validated = $request->validate([
-            'data' => 'required|date',
-            'pazienteterapia_paziente_id'=> 'required|integer|exists:App\Models\PazienteTerapia,id',
-            'terapia_terapia_id'=>'required|integer|exists:App\Models\Terapia,id',
-            'esercizioterapia_esercizio_idesercizio'=> 'required|integer|exists:App\Models\EsercizioTerapia,id',
+            'date' => 'required|date',
+            'PatientTherapy_Patient_id'=> 'required|integer|exists:App\Models\PazienteTerapia,id',
+            'Therapy_Therapy_id'=>'required|integer|exists:App\Models\Terapia,id',
+            'ExerciseTherapy_Exercise_idExercise'=> 'required|integer|exists:App\Models\EsercizioTerapia,id',
         ]);
  
         $completato->fill($validated);
@@ -55,14 +55,14 @@ class CompletatoController extends Controller
     public function update(Request $request, Completato $completato)
     {
         $validated = $request->validate([
-            'data' => 'required|date',
+            'date' => 'required|date',
             // non avrebbe senso effettuare l'update di questi campi. al massimo la data di completamento
             //'pazienteterapia_paziente_id'=> 'required|integer|exists:App\Models\PazienteTerapia,id',
             //'terapia_terapia_id'=>'required|integer|exists:App\Models\Terapia,id',
             //'esercizioterapia_esercizio_idesercizio'=> 'required|integer|exists:App\Models\EsercizioTerapia,id',
         ]);
  
-        $completato->data = $validated['data'];
+        $completato->date = $validated['date'];
  
         $completato->save();
         return $completato;

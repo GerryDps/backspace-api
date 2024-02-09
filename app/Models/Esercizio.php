@@ -14,5 +14,5 @@ class Esercizio extends Model
     *
     * @var string
     */
-    protected $table = 'Esercizio';
+    protected $table = 'Exercise';
 }

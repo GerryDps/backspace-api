@@ -6,10 +6,10 @@ use App\Models\Episodio;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-enum Intensita: int {
-    case alta = 1;
-    case media = 2;
-    case bassa = 3;
+enum Intensity: int {
+    case high = 1;
+    case medium = 2;
+    case low = 3;
 }
 
 class EpisodioController extends Controller
@@ -32,9 +32,9 @@ class EpisodioController extends Controller
 
         $validated = $request->validate([
             'timestamp' => 'required|date',
-            'intensita' => ['required',Rule::enum(Intensita::class)],
-            'descrizione' => 'string|nullable|max:255',
-            'paziente_id' => 'required|integer|exists:App\Models\Paziente,id',
+            'intensity' => ['required',Rule::enum(Intensity::class)],
+            'description' => 'string|nullable|max:255',
+            'patient_id' => 'required|integer|exists:App\Models\Paziente,id',
         ]);
  
         $episodio->fill($validated);
@@ -61,13 +61,13 @@ class EpisodioController extends Controller
 
         $validated = $request->validate([
             'timestamp' => 'required|date',
-            'intensita' => ['required',Rule::enum(Intensita::class)],
-            'descrizione' => 'string|nullable|max:255',
+            'intensity' => ['required',Rule::enum(Intensity::class)],
+            'description' => 'string|nullable|max:255',
         ]);
  
         $episodio->timestamp = $validated['timestamp'];
-        $episodio->intensita = $validated['intensita'];
-        $episodio->descrizione = $validated['descrizione'];
+        $episodio->intensity = $validated['intensity'];
+        $episodio->description = $validated['description'];
  
         $episodio->save();
         return $episodio;

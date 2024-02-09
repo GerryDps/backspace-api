@@ -1,0 +1,1306 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://backspace.webhop.me'
+paths:
+  /api/checkToken:
+    get:
+      summary: ''
+      operationId: getApiCheckToken
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/logout:
+    post:
+      summary: logout
+      operationId: logout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/medico:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: savion92@example.com
+                nome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: inyfhqjorlcdigal
+                cognome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: edxfgn
+                datadinascita:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-02-09T12:58:07'
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters. Must not be greater than 255 characters.'
+                  example: htd`ul
+              required:
+                - email
+                - nome
+                - cognome
+                - datadinascita
+                - password
+      security: []
+  '/api/medico/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: ucrooks@example.org
+                nome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: xownotfqwmcxjbntg
+                cognome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: ccanukhkqtwbqcbymfcrhzgw
+                datadinascita:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-02-09T12:58:07'
+              required:
+                - email
+                - nome
+                - cognome
+                - datadinascita
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the medico.'
+        example: 7
+        required: true
+        schema:
+          type: integer
+  /api/terapia:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: nityqcdnsu
+                medico_id:
+                  type: integer
+                  description: ''
+                  example: 19
+              required:
+                - nome
+                - medico_id
+      security: []
+  '/api/terapia/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: lynppkuopnxiusfqntksdoxub
+              required:
+                - nome
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the terapium.'
+        example: 15
+        required: true
+        schema:
+          type: integer
+  /api/paziente:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: 'Requests/StorePazienteRequest fa la validazione'
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: anne.mills@example.org
+                nome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: fwffqcfovrtfkruthohlvbv
+                cognome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: cwnfwrfa
+                datadinascita:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-02-09T12:58:07'
+                tipo:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: lacgxqwwnzvysgfqoly
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters. Must not be greater than 255 characters.'
+                  example: '9ibD~:xLwjKIIpAII.X'
+              required:
+                - email
+                - nome
+                - cognome
+                - datadinascita
+                - tipo
+                - password
+      security: []
+  '/api/paziente/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: 'Requests/UpdatePazienteRequest fa la validazione'
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: lroberts@example.com
+                nome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: qnntxmvmzoasnjrpvixu
+                cognome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: nuondnq
+                datadinascita:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-02-09T12:58:07'
+                tipo:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: epegeajvqcuz
+                medico_id:
+                  type: integer
+                  description: ''
+                  example: 14
+              required:
+                - email
+                - nome
+                - cognome
+                - datadinascita
+                - tipo
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the paziente.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/esercizio:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: xfuzafknfdeysdtnihlfismfc
+                descrizione:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: glqupesjtm
+                video:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: qqgnrfcelgsafdeycexvetkjd
+              required:
+                - nome
+                - descrizione
+                - video
+      security: []
+  '/api/esercizio/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: umubuxzjvor
+                descrizione:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: wfuvak
+                video:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: ctzmkkwooajqlxsm
+              required:
+                - nome
+                - descrizione
+                - video
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the esercizio.'
+        example: 12
+        required: true
+        schema:
+          type: integer
+  /api/episodio:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timestamp:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-02-09T12:58:07'
+                intensita:
+                  type: string
+                  description: ''
+                  example: architecto
+                descrizione:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: meuxhrwgajpxr
+                paziente_id:
+                  type: integer
+                  description: ''
+                  example: 2
+              required:
+                - timestamp
+                - intensita
+                - paziente_id
+      security: []
+  '/api/episodio/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timestamp:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-02-09T12:58:07'
+                intensita:
+                  type: string
+                  description: ''
+                  example: aut
+                descrizione:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: akplqwewjx
+              required:
+                - timestamp
+                - intensita
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the episodio.'
+        example: 10
+        required: true
+        schema:
+          type: integer
+  /api/pazienteterapia:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                paziente_id:
+                  type: integer
+                  description: ''
+                  example: 20
+                terapia_id:
+                  type: integer
+                  description: ''
+                  example: 13
+              required:
+                - paziente_id
+                - terapia_id
+      security: []
+  '/api/pazienteterapia/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the pazienteterapium.'
+        example: 12
+        required: true
+        schema:
+          type: integer
+  /api/completato:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-02-09T12:58:07'
+                pazienteterapia_paziente_id:
+                  type: integer
+                  description: ''
+                  example: 1
+                terapia_terapia_id:
+                  type: integer
+                  description: ''
+                  example: 17
+                esercizioterapia_esercizio_idesercizio:
+                  type: integer
+                  description: ''
+                  example: 14
+              required:
+                - data
+                - pazienteterapia_paziente_id
+                - terapia_terapia_id
+                - esercizioterapia_esercizio_idesercizio
+      security: []
+  '/api/completato/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-02-09T12:58:07'
+              required:
+                - data
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the completato.'
+        example: 7
+        required: true
+        schema:
+          type: integer
+  /api/esercizioterapia:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                giornoSettimana:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: mxjsbui
+                fasciaOraria:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: peahtbeayg
+                sequenza:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: aobywxetrjhbrvokayx
+                terapia_id:
+                  type: integer
+                  description: ''
+                  example: 15
+                esercizio_idesercizio:
+                  type: integer
+                  description: ''
+                  example: 8
+              required:
+                - giornoSettimana
+                - fasciaOraria
+                - sequenza
+                - terapia_id
+                - esercizio_idesercizio
+      security: []
+  '/api/esercizioterapia/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                giornoSettimana:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: a
+                fasciaOraria:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: wfxobcxkpckhigewzova
+                sequenza:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: klifudhiwkqgb
+                terapia_id:
+                  type: integer
+                  description: ''
+                  example: 8
+                esercizio_idesercizio:
+                  type: integer
+                  description: ''
+                  example: 3
+              required:
+                - giornoSettimana
+                - fasciaOraria
+                - sequenza
+                - terapia_id
+                - esercizio_idesercizio
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the esercizioterapium.'
+        example: 8
+        required: true
+        schema:
+          type: integer
+  /api/questionario:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                paziente_id:
+                  type: integer
+                  description: ''
+                  example: 15
+              required:
+                - paziente_id
+      security: []
+  '/api/questionario/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the questionario.'
+        example: 5
+        required: true
+        schema:
+          type: integer
+  /api/register:
+    post:
+      summary: register.
+      operationId: register
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: fklein@example.net
+                nome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: bxippeliosejlywp
+                cognome:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: swshwy
+                datadinascita:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-02-09T12:58:07'
+                tipo:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: xhkuom
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters. Must not be greater than 255 characters.'
+                  example: "Xtah%:|L'#dE"
+              required:
+                - email
+                - nome
+                - cognome
+                - datadinascita
+                - tipo
+                - password
+      security: []
+  /api/login:
+    post:
+      summary: login.
+      operationId: login
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: quinten.damore@example.org
+                password:
+                  type: string
+                  description: ''
+                  example: quis
+              required:
+                - email
+                - password
+      security: []
+  /api/forgot-password:
+    post:
+      summary: 'forgot password'
+      operationId: forgotPassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: nicholas.lesch@example.net
+              required:
+                - email
+      security: []
+  /api/reset-password:
+    post:
+      summary: 'reset password'
+      operationId: resetPassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: ''
+                  example: nemo
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: vbernier@example.org
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters. Must not be greater than 255 characters.'
+                  example: eVQ2E=GV0H
+              required:
+                - token
+                - email
+                - password
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []

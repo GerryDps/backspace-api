@@ -22,8 +22,8 @@ class EsercizioController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nome'=> 'required|unique:App\Models\Esercizio,nome|max:255',
-            'descrizione'=> 'required|max:255',
+            'name'=> 'required|unique:App\Models\Esercizio,name|max:255',
+            'description'=> 'required|max:255',
             'video'=> 'required|max:255',
         ]);
         $esercizio = new Esercizio;
@@ -49,8 +49,8 @@ class EsercizioController extends Controller
     public function update(Request $request, Esercizio $esercizio)
     {
         $validated = $request->validate([
-            'nome'=> 'required|unique:App\Models\Esercizio,nome|max:255',
-            'descrizione'=> 'required|max:255',
+            'name'=> 'required|unique:App\Models\Esercizio,name|max:255',
+            'description'=> 'required|max:255',
             'video'=> 'required|max:255',
         ]);
         $esercizio = new Esercizio;

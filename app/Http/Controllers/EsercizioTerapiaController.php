@@ -26,11 +26,11 @@ class EsercizioTerapiaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'giornoSettimana'=> 'required|max:255',
-            'fasciaOraria'=> 'required|max:255',
-            'sequenza'=> 'required|max:255',
-            'terapia_id'=>'required|integer|exists:App\Models\Terapia,id',
-            'esercizio_idesercizio'=> 'required|integer|exists:App\Models\Esercizio,id',
+            'dayofweek'=> 'required|max:255',
+            'timeofday'=> 'required|max:255',
+            'sequence'=> 'required|max:255',
+            'Therapy_id'=>'required|integer|exists:App\Models\Terapia,id',
+            'Exercise_idExercise'=> 'required|integer|exists:App\Models\Esercizio,id',
         ]);
         $esercizioterapia = new EsercizioTerapia;
         $esercizioterapia->fill($validated);
@@ -52,11 +52,11 @@ class EsercizioTerapiaController extends Controller
     public function update(Request $request, EsercizioTerapia $esercizioTerapia)
     {
         $validated = $request->validate([
-            'giornoSettimana'=> 'required|max:255',
-            'fasciaOraria'=> 'required|max:255',
-            'sequenza'=> 'required|max:255',
-            'terapia_id'=>'required|integer|exists:App\Models\Terapia,id',
-            'esercizio_idesercizio'=> 'required|integer|exists:App\Models\Esercizio,id',
+            'dayofweek'=> 'required|max:255',
+            'timeofday'=> 'required|max:255',
+            'sequence'=> 'required|max:255',
+            'Therapy_id'=>'required|integer|exists:App\Models\Terapia,id',
+            'Exercise_idExercise'=> 'required|integer|exists:App\Models\Esercizio,id',
         ]);
         $esercizioTerapia = new EsercizioTerapia;
         $esercizioTerapia->fill($validated);

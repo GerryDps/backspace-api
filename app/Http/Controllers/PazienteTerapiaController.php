@@ -27,8 +27,8 @@ class PazienteTerapiaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'paziente_id'=>'required|integer|exists:App\Models\Paziente,id',
-            'terapia_id'=>'required|integer|exists:App\Models\Terapia,id',
+            'patient_id'=>'required|integer|exists:App\Models\Paziente,id',
+            'therapy_id'=>'required|integer|exists:App\Models\Terapia,id',
         ]);
         $pazienteTerapia = new PazienteTerapia;
         $pazienteTerapia->fill($validated);

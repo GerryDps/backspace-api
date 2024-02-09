@@ -14,5 +14,5 @@ class PazienteTerapia extends Model
     *
     * @var string
     */
-    protected $table = 'PazienteTerapia';
+    protected $table = 'PatientTherapy';
 }

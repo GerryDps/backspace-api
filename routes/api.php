@@ -48,18 +48,18 @@ Route::middleware(['auth:sanctum','api'])->group(function () {
     /**
      * Risorse, crea le route alle crud per ogni risorsa
      */
-    Route::resource('medico',MedicoController::class);
-    Route::resource('terapia',TerapiaController::class);
-    Route::resource('paziente',PazienteController::class);
-    Route::resource('esercizio',EsercizioController::class);
-    Route::resource('episodio',EpisodioController::class);
+    Route::resource('doctor',MedicoController::class);
+    Route::resource('therapy',TerapiaController::class);
+    Route::resource('patient',PazienteController::class);
+    Route::resource('exercise',EsercizioController::class);
+    Route::resource('episode',EpisodioController::class);
     
-    Route::resource('pazienteterapia',PazienteTerapiaController::class);
-    Route::resource('completato',CompletatoController::class);
-    Route::resource('esercizioterapia',EsercizioTerapiaController::class);
-    Route::resource('questionario',QuestionarioController::class);
+    Route::resource('patient-therapy',PazienteTerapiaController::class);
+    Route::resource('complete-exercise',CompletatoController::class);
+    Route::resource('exercise-therapy',EsercizioTerapiaController::class);
+    Route::resource('questionary',QuestionarioController::class);
 
-
+    Route::post('/patient/update-doctor', [PazienteController::class, 'updateMedico'])->name('update-doctor');
 });
 
 

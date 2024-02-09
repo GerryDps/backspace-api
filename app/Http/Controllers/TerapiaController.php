@@ -13,8 +13,8 @@ class TerapiaController extends Controller
      */
     public function index()
     {
-        $terapia = Terapia::all();
-        return $terapia;
+        $therapy = Terapia::all();
+        return $therapy;
     }
 
     /**
@@ -23,15 +23,15 @@ class TerapiaController extends Controller
     protected function storeTerapia(Request $request)
     {
         $validated = $request->validate([
-            'nome' => 'required|unique:App\Models\Terapia,nome|max:255',
+            'nome' => 'required|unique:App\Models\Terapia,name|max:255',
         ]);
-        $terapia = new Terapia;
+        $therapy = new Terapia;
 
-        $terapia->nome = $validated['nome'];
+        $therapy->name = $validated['name'];
  
-        $terapia->save();
+        $therapy->save();
 
-        return $terapia;
+        return $therapy;
     }
 
     /**
@@ -40,55 +40,55 @@ class TerapiaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nome' => 'required|unique:App\Models\Terapia,nome|max:255',
-            'medico_id' => 'required|exists:App\Models\Medico,id|integer',
+            'name' => 'required|unique:App\Models\Terapia,name|max:255',
+            'doctor_id' => 'required|exists:App\Models\Medico,id|integer',
         ]);
-        $terapia = new Terapia;
+        $therapy = new Terapia;
 
-        $terapia->nome = $validated['nome'];
+        $therapy->name = $validated['name'];
  
-        $terapia->save();
+        $therapy->save();
         /**
          * Creazione della relazione usando la table MedicoTerapia
          */
         $relazione = new MedicoTerapia;
-        $relazione->medico_id = $validated['medico_id'];
-        $relazione->terapia_id = $terapia->id;
+        $relazione->doctor_id = $validated['doctor_id'];
+        $relazione->therapy_id = $therapy->id;
         $relazione->save();
 
-        return [$terapia,$relazione];
+        return [$therapy,$relazione];
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Terapia $terapia)
+    public function show(Terapia $therapy)
     {
         //
-        return $terapia;
+        return $therapy;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Terapia $terapia)
+    public function update(Request $request, Terapia $therapy)
     {
         $validated = $request->validate([
-            'nome' => 'required|unique:App\Models\Terapia,nome|max:255'
+            'name' => 'required|unique:App\Models\Terapia,name|max:255'
         ]);
         
-        $terapia->nome = $validated['nome'];
+        $therapy->name = $validated['name'];
 
-        $terapia->save();
-        return $terapia;
+        $therapy->save();
+        return $therapy;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Terapia $terapia)
+    public function destroy(Terapia $therapy)
     {
-        $terapia->delete();
+        $therapy->delete();
         return '{}';
     }
 }

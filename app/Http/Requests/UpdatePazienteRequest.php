@@ -23,11 +23,11 @@ class UpdatePazienteRequest extends FormRequest
     {
         return [
             'email' => 'required|email|max:255',
-            'nome' => 'required|max:255',
-            'cognome' => 'required|max:255',
-            'datadinascita' => 'required|date',
-            'tipo' => 'required|max:255',
-            'medico_id' => 'integer|exists:App\Models\Medico,id',
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'birthday' => 'required|date',
+            'type' => 'max:255',
+            'doctor_id' => 'integer|exists:App\Models\Medico,id',
         ];
     }
 }

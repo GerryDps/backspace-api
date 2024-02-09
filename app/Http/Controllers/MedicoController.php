@@ -26,9 +26,9 @@ class MedicoController extends Controller
         $medico = new Medico;
  
         $medico->email = $validated['email'];
-        $medico->nome = $validated['nome'];
-        $medico->cognome = $validated['cognome'];
-        $medico->datadinascita = $validated['datadinascita'];
+        $medico->name = $validated['name'];
+        $medico->surname = $validated['surname'];
+        $medico->birthday = $validated['birthday'];
         $medico->password = password_hash($validated['password'],PASSWORD_DEFAULT);
  
         $medico->save();
@@ -52,9 +52,9 @@ class MedicoController extends Controller
         $validated = $request->validated();
 
         $medico->email = $validated['email'];
-        $medico->nome = $validated['nome'];
-        $medico->cognome = $validated['cognome'];
-        $medico->datadinascita = $validated['datadinascita'];
+        $medico->name = $validated['name'];
+        $medico->surname = $validated['surname'];
+        $medico->birthday = $validated['birthday'];
         
         $medico->save();
         return $medico;
