@@ -44,7 +44,7 @@ class UtenteController extends Controller
         }
 
         $token = $paziente->createToken($request->email); // "personal_access_tokens"."name" sarà l'email (table.name)
-        return $response->setStatusCode(200)->setContent(['token' => $token->plainTextToken ]);
+        return $response->setStatusCode(200)->setContent(['token' => $token->plainTextToken,'paziente' => $paziente ]);
     }
 
     /**

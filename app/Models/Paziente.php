@@ -26,4 +26,14 @@ class Paziente extends Model implements CanResetPasswordContract
      * @var array
      */
     protected $hidden = ['password'];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'hasDoctor' => 'boolean',
+        'hasQuestionary' => 'boolean',
+    ];
 }

@@ -41,7 +41,9 @@ class PazienteController extends Controller
         $paziente->name = $validated['name'];
         $paziente->surname = $validated['surname'];
         $paziente->birthday = $validated['birthday'];
-        $paziente->type = $validated['type'];
+        $paziente->hasDoctor = false;
+        $paziente->hasQuestionary = false;
+        if(isset($validated['type']))$paziente->type = $validated['type'];
         $paziente->password = password_hash($validated['password'],PASSWORD_DEFAULT);
  
         $paziente->save();
@@ -69,7 +71,7 @@ class PazienteController extends Controller
         $paziente->name = $validated['name'];
         $paziente->surname = $validated['surname'];
         $paziente->birthday = $validated['birthday'];
-        $paziente->type = $validated['type'];
+        if(isset($validated['type']))$paziente->type = $validated['type'];
         if(isset($validated['doctor_id']))$paziente->doctor_id = $validated['doctor_id'];
         
         $paziente->save();
