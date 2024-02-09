@@ -32,6 +32,7 @@ class MedicoController extends Controller
         $medico->password = password_hash($validated['password'],PASSWORD_DEFAULT);
  
         $medico->save();
+        $medico->refresh();
         return $medico;
     }
 
@@ -57,6 +58,7 @@ class MedicoController extends Controller
         $medico->birthday = $validated['birthday'];
         
         $medico->save();
+        $medico->refresh();
         return $medico;
     }
 

@@ -10,7 +10,7 @@ use App\Models\Paziente;
 class PazienteController extends Controller
 {
     /**
-     * Get paziente by email
+     * Get patient by email
      */
     public static function findByEmail(String $email)
     {
@@ -41,12 +41,14 @@ class PazienteController extends Controller
         $paziente->name = $validated['name'];
         $paziente->surname = $validated['surname'];
         $paziente->birthday = $validated['birthday'];
-        $paziente->hasDoctor = false;
-        $paziente->hasQuestionary = false;
+        if(isset($validated['hasDoctor']))$paziente->hasDoctor = $validated['hasDoctor'];
+        if(isset($validated['hasQuestionary']))$paziente->hasQuestionary = $validated['hasQuestionary'];
         if(isset($validated['type']))$paziente->type = $validated['type'];
         $paziente->password = password_hash($validated['password'],PASSWORD_DEFAULT);
- 
+
         $paziente->save();
+        $paziente->refresh();
+        unset($paziente['type']);
         return $paziente;
     }
 
@@ -71,17 +73,20 @@ class PazienteController extends Controller
         $paziente->name = $validated['name'];
         $paziente->surname = $validated['surname'];
         $paziente->birthday = $validated['birthday'];
+        if(isset($validated['hasDoctor']))$paziente->hasDoctor = $validated['hasDoctor'];
+        if(isset($validated['hasQuestionary']))$paziente->hasQuestionary = $validated['hasQuestionary'];
         if(isset($validated['type']))$paziente->type = $validated['type'];
         if(isset($validated['doctor_id']))$paziente->doctor_id = $validated['doctor_id'];
         
         $paziente->save();
+        $paziente->refresh();
+        unset($paziente['type']);
         return $paziente;
     }
 
     /**
-     * Assegna un medico al paziente
-     * Come update è solo semplificata
-     * richiede solo medico_id
+     * Update the specified resource in storage.
+     * Update only the doctor_id of a patient
      */
     public function updateMedico(Request $request, Paziente $paziente)
     {

@@ -14,7 +14,9 @@ use App\Http\Requests\StorePazienteRequest;
 class UtenteController extends Controller
 {
     /**
-    * register.
+    * Register user.
+    * This endpoint lets you register a user
+    * @unauthenticated
     */
     public function register(StorePazienteRequest $request, Response $response, PazienteController $pazienteController)
     {
@@ -28,7 +30,9 @@ class UtenteController extends Controller
     }
 
     /**
-    * login.
+    * Login user.
+    * This endpoint lets you login a user
+    * @unauthenticated
     */
     public function login(Request $request, Response $response, PazienteController $pazienteController)
     {
@@ -56,8 +60,10 @@ class UtenteController extends Controller
     }
 
     /**
-     * forgot password
-     */
+     * Forgotpassword.
+     * This endpoint give you a token to reset the password.
+     * @unauthenticated
+    */
     public function forgotpassword(Request $request, Response $response, PazienteController $pazienteController){
         $request->validate(['email' => 'required|email']);
 
@@ -84,8 +90,11 @@ class UtenteController extends Controller
                 : back()->withErrors(['email' => __($status)]); */
     }
 
+
     /**
-     * reset password
+     * Resetpassword.
+     * This endpoint reset the password
+     * @unauthenticated
      */
     public function resetpassword(Request $request, Response $response, PazienteController $pazienteController){
         
