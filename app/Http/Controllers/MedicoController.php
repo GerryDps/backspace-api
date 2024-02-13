@@ -39,35 +39,35 @@ class MedicoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Medico $medico)
+    public function show(Medico $doctor)
     {
         //
-        return $medico;
+        return $doctor;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMedicoRequest $request, Medico $medico)
+    public function update(UpdateMedicoRequest $request, Medico $doctor)
     {
         $validated = $request->validated();
 
-        $medico->email = $validated['email'];
-        $medico->name = $validated['name'];
-        $medico->surname = $validated['surname'];
-        $medico->birthday = $validated['birthday'];
+        $doctor->email = $validated['email'];
+        $doctor->name = $validated['name'];
+        $doctor->surname = $validated['surname'];
+        $doctor->birthday = $validated['birthday'];
         
-        $medico->save();
-        $medico->refresh();
-        return $medico;
+        $doctor->save();
+        $doctor->refresh();
+        return $doctor;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Medico $medico)
+    public function destroy(Medico $doctor)
     {
-        $medico->delete();
+        $doctor->delete();
         return '{}';
     }
 }

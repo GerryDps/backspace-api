@@ -39,15 +39,15 @@ class PazienteTerapiaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PazienteTerapia $pazienteTerapia)
+    public function show(PazienteTerapia $patient_therapy)
     {
-        return $pazienteTerapia;
+        return $patient_therapy;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PazienteTerapia $pazienteTerapia)
+    public function update(Request $request, PazienteTerapia $patient_therapy)
     {
         // Non avrebbe senso updatare questa relazione... delete() -> store()
         /* $validated = $request->validate([
@@ -63,9 +63,9 @@ class PazienteTerapiaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PazienteTerapia $pazienteTerapia)
+    public function destroy(PazienteTerapia $patient_therapy)
     {
-        $pazienteTerapia->delete();
+        $patient_therapy->delete();
         return '{}';
     }
 }

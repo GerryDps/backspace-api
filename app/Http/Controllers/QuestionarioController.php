@@ -35,26 +35,26 @@ class QuestionarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Questionario $questionario)
+    public function show(Questionario $questionary)
     {
         //
-        return $questionario;
+        return $questionary;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Questionario $questionario)
+    public function update(Request $request, Questionario $questionary)
     {
-        return $questionario;
+        return $questionary;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Questionario $questionario)
+    public function destroy(Questionario $questionary)
     {
-        $questionario->delete();
+        $questionary->delete();
         return '{}';
     }
 }

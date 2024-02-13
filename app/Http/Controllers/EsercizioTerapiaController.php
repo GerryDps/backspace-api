@@ -41,15 +41,15 @@ class EsercizioTerapiaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(EsercizioTerapia $esercizioTerapia)
+    public function show(EsercizioTerapia $exercise_therapy)
     {
-        return $esercizioTerapia;
+        return $exercise_therapy;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, EsercizioTerapia $esercizioTerapia)
+    public function update(Request $request, EsercizioTerapia $exercise_therapy)
     {
         $validated = $request->validate([
             'dayofweek'=> 'required|max:255',
@@ -58,18 +58,18 @@ class EsercizioTerapiaController extends Controller
             'Therapy_id'=>'required|integer|exists:App\Models\Terapia,id',
             'Exercise_idExercise'=> 'required|integer|exists:App\Models\Esercizio,id',
         ]);
-        $esercizioTerapia = new EsercizioTerapia;
-        $esercizioTerapia->fill($validated);
-        $esercizioTerapia->save();
-        return $esercizioTerapia;
+        $exercise_therapy = new EsercizioTerapia;
+        $exercise_therapy->fill($validated);
+        $exercise_therapy->save();
+        return $exercise_therapy;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(EsercizioTerapia $esercizioTerapia)
+    public function destroy(EsercizioTerapia $exercise_therapy)
     {
-        $esercizioTerapia->delete();
+        $exercise_therapy->delete();
         return '{}';
     }
 }

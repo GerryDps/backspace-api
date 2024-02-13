@@ -28,8 +28,6 @@ class StorePazienteRequest extends FormRequest
             'surname' => 'required|max:255',
             'birthday' => 'required|date',
             'type' => 'nullable|max:255',
-            'hasDoctor'=> 'nullable|boolean',
-            'hasQuestionary'=> 'nullable|boolean',
             /* 'password' => ['required|max:255', Password::min(8)
             ->letters()
             ->mixedCase()

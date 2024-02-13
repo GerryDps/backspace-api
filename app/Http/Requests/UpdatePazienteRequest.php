@@ -27,8 +27,6 @@ class UpdatePazienteRequest extends FormRequest
             'surname' => 'required|max:255',
             'birthday' => 'required|date',
             'type' => 'nullable|max:255',
-            'hasDoctor'=> 'nullable|boolean',
-            'hasQuestionary'=> 'nullable|boolean',
             'doctor_id' => 'integer|exists:App\Models\Medico,id',
         ];
     }

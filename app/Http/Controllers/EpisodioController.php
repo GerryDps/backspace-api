@@ -46,18 +46,17 @@ class EpisodioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Episodio $episodio)
+    public function show(Episodio $episode)
     {
         //
-        return $episodio;
+        return $episode;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Episodio $episodio)
+    public function update(Request $request, Episodio $episode)
     {
-        $episodio = new Episodio;
 
         $validated = $request->validate([
             'timestamp' => 'required|date',
@@ -65,20 +64,20 @@ class EpisodioController extends Controller
             'description' => 'string|nullable|max:255',
         ]);
  
-        $episodio->timestamp = $validated['timestamp'];
-        $episodio->intensity = $validated['intensity'];
-        $episodio->description = $validated['description'];
+        $episode->timestamp = $validated['timestamp'];
+        $episode->intensity = $validated['intensity'];
+        $episode->description = $validated['description'];
  
-        $episodio->save();
-        return $episodio;
+        $episode->save();
+        return $episode;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Episodio $episodio)
+    public function destroy(Episodio $episode)
     {
-        $episodio->delete();
+        $episode->delete();
         return '{}';
     }
 }

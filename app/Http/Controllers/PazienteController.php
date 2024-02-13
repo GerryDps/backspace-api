@@ -41,8 +41,6 @@ class PazienteController extends Controller
         $paziente->name = $validated['name'];
         $paziente->surname = $validated['surname'];
         $paziente->birthday = $validated['birthday'];
-        if(isset($validated['hasDoctor']))$paziente->hasDoctor = $validated['hasDoctor'];
-        if(isset($validated['hasQuestionary']))$paziente->hasQuestionary = $validated['hasQuestionary'];
         if(isset($validated['type']))$paziente->type = $validated['type'];
         $paziente->password = password_hash($validated['password'],PASSWORD_DEFAULT);
 
@@ -55,57 +53,57 @@ class PazienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Paziente $paziente)
+    public function show(Paziente $patient)
     {
         //
-        return $paziente;
+        return $patient;
     }
 
     /**
      * Update the specified resource in storage.
      * Requests/UpdatePazienteRequest fa la validazione
      */
-    public function update(UpdatePazienteRequest $request, Paziente $paziente)
+    public function update(UpdatePazienteRequest $request, Paziente $patient)
     {
         $validated = $request->validated();
 
-        $paziente->email = $validated['email'];
-        $paziente->name = $validated['name'];
-        $paziente->surname = $validated['surname'];
-        $paziente->birthday = $validated['birthday'];
-        if(isset($validated['hasDoctor']))$paziente->hasDoctor = $validated['hasDoctor'];
-        if(isset($validated['hasQuestionary']))$paziente->hasQuestionary = $validated['hasQuestionary'];
-        if(isset($validated['type']))$paziente->type = $validated['type'];
-        if(isset($validated['doctor_id']))$paziente->doctor_id = $validated['doctor_id'];
+        $patient->email = $validated['email'];
+        $patient->name = $validated['name'];
+        $patient->surname = $validated['surname'];
+        $patient->birthday = $validated['birthday'];
+        if(isset($validated['type']))$patient->type = $validated['type'];
+        if(isset($validated['doctor_id']))$patient->doctor_id = $validated['doctor_id'];
         
-        $paziente->save();
-        $paziente->refresh();
-        unset($paziente['type']);
-        return $paziente;
+        $patient->save();
+        $patient->refresh();
+        unset($patient['type']);
+        return $patient;
     }
 
     /**
      * Update the specified resource in storage.
      * Update only the doctor_id of a patient
      */
-    public function updateMedico(Request $request, Paziente $paziente)
+    public function updateMedico(Request $request, Paziente $patient)
     {
         $validated = $request->validate([
             'doctor_id'=> 'required|integer|exists:App\Models\Medico,id',
         ]);
 
-        $paziente->doctor_id = $validated['doctor_id'];
+        $patient->doctor_id = $validated['doctor_id'];
         
-        $paziente->save();
-        return $paziente;
+        $patient->save();
+        $patient->refresh();
+        unset($patient['type']);
+        return $patient;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Paziente $paziente)
+    public function destroy(Paziente $patient)
     {
-        $paziente->delete();
+        $patient->delete();
         return '{}';
     }
 }

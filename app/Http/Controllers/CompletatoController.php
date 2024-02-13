@@ -44,15 +44,15 @@ class CompletatoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Completato $completato)
+    public function show(Completato $complete_exercise)
     {
-        return $completato;
+        return $complete_exercise;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Completato $completato)
+    public function update(Request $request, Completato $complete_exercise)
     {
         $validated = $request->validate([
             'date' => 'required|date',
@@ -62,18 +62,18 @@ class CompletatoController extends Controller
             //'esercizioterapia_esercizio_idesercizio'=> 'required|integer|exists:App\Models\EsercizioTerapia,id',
         ]);
  
-        $completato->date = $validated['date'];
+        $complete_exercise->date = $validated['date'];
  
-        $completato->save();
-        return $completato;
+        $complete_exercise->save();
+        return $complete_exercise;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Completato $completato)
+    public function destroy(Completato $complete_exercise)
     {
-        $completato->delete();
-        return $completato;
+        $complete_exercise->delete();
+        return $complete_exercise;
     }
 }

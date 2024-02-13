@@ -37,36 +37,36 @@ class EsercizioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Esercizio $esercizio)
+    public function show(Esercizio $exercise)
     {
         //
-        return $esercizio;
+        return $exercise;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Esercizio $esercizio)
+    public function update(Request $request, Esercizio $exercise)
     {
         $validated = $request->validate([
             'name'=> 'required|unique:App\Models\Esercizio,name|max:255',
             'description'=> 'required|max:255',
             'video'=> 'required|max:255',
         ]);
-        $esercizio = new Esercizio;
+        $exercise = new Esercizio;
         
-        $esercizio->fill($validated);
+        $exercise->fill($validated);
  
-        $esercizio->save();
-        return $esercizio;
+        $exercise->save();
+        return $exercise;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Esercizio $esercizio)
+    public function destroy(Esercizio $exercise)
     {
-        $esercizio->delete();
+        $exercise->delete();
         return '{}';
     }
 }
