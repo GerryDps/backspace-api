@@ -18,6 +18,4 @@ yarn-error.log
 /.idea
 /.vscode
 /.scribe
-/public/docs/collection.json
-/public/docs/openapi.yaml
-/public/docs/index.html
+/public/docs/
