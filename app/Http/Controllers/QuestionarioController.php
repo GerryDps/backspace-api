@@ -26,7 +26,7 @@ class QuestionarioController extends Controller
             'patient_id' => 'required|integer|exists:App\Models\Paziente,id',
         ]);
  
-        $questionario->patient_id = $validated['patient_id'];
+        $questionario->id = $validated['patient_id'];
  
         $questionario->save();
         return $questionario;
