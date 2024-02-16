@@ -6,12 +6,6 @@ use App\Models\Episodio;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-enum Intensity: int {
-    case high = 0;
-    case medium = 1;
-    case low = 2;
-}
-
 class EpisodioController extends Controller
 {
     /**
@@ -43,7 +37,7 @@ class EpisodioController extends Controller
         $validated = $request->validate([
             'start' => 'required|date',
             'end' => 'required|date',
-            'intensity' => ['required',Rule::enum(Intensity::class)],
+            'intensity' => 'required|integer|max:3',
             'description' => 'string|nullable|max:255',
             'patient_id' => 'required|integer|exists:App\Models\Paziente,id',
         ]);
@@ -81,7 +75,7 @@ class EpisodioController extends Controller
         $validated = $request->validate([
             'start' => 'required|date',
             'end' => 'required|date',
-            'intensity' => ['required',Rule::enum(Intensity::class)],
+            'intensity' => 'required|integer|max:3',
             'description' => 'string|nullable|max:255',
         ]);
  
