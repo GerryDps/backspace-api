@@ -70,7 +70,7 @@ class EpisodioController extends Controller
         $date = $validated['date'];
         $date = strtotime($date);
 
-        return Episodio::where('patient_id',$patient_id)->whereBetween('timestamp',[$date,$date+86399])->first();
+        return Episodio::where('patient_id',$patient_id)->whereBetween('start',[$date,$date+86399])->first();
     }
 
     /**
