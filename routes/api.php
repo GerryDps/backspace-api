@@ -60,7 +60,7 @@ Route::middleware(['auth:sanctum','api'])->group(function () {
     Route::resource('questionary',QuestionarioController::class);
 
     Route::post('/patient/update-doctor', [PazienteController::class, 'updateMedico'])->name('update-doctor');
-    Route::get('/episode', [EpisodioController::class, 'getByDay'])->name('getByDay');
+    Route::post('/episode/getByDay', [EpisodioController::class, 'getByDay'])->name('getByDay');
     
 });
 
