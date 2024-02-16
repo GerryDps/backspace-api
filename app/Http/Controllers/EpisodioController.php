@@ -67,8 +67,10 @@ class EpisodioController extends Controller
             'patient_id' => 'required|integer|exists:App\Models\Paziente,id',
         ]);
         $patient_id = $validated['patient_id'];
-        $data = $validated['date'];
-        return Episodio::where('patient_id',$patient_id)->whereBetween('timestamp',[$data,$data+86399])->first();
+        $date = $validated['date'];
+        $date = strtotime($date);
+
+        return Episodio::where('patient_id',$patient_id)->whereBetween('timestamp',[$date,$date+86399])->first();
     }
 
     /**
