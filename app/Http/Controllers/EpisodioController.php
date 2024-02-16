@@ -7,13 +7,23 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 enum Intensity: int {
-    case high = 1;
-    case medium = 2;
-    case low = 3;
+    case high = 0;
+    case medium = 1;
+    case low = 2;
 }
 
 class EpisodioController extends Controller
 {
+    /**
+     * Get one Episode by start-end 
+     */
+    private function _get(int $patient_id, string $start, string $end)
+    {
+        $start = strtotime($start);
+        $end = strtotime($end);
+        return Episodio::where('patient_id',$patient_id)->where('start',$start)->where('end',$end)->first();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -31,7 +41,8 @@ class EpisodioController extends Controller
         $episodio = new Episodio;
 
         $validated = $request->validate([
-            'timestamp' => 'required|date',
+            'start' => 'required|date',
+            'end' => 'required|date',
             'intensity' => ['required',Rule::enum(Intensity::class)],
             'description' => 'string|nullable|max:255',
             'patient_id' => 'required|integer|exists:App\Models\Paziente,id',
@@ -51,6 +62,15 @@ class EpisodioController extends Controller
         //
         return $episode;
     }
+    
+    /**
+     * Display the resource using patient_id,start,end.
+     */
+    public function getByDay(int $patient_id, string $data)
+    {
+        $data = strtotime($data);
+        return Episodio::where('patient_id',$patient_id)->whereBetween('timestamp',[$data,$data+86399])->first();
+    }
 
     /**
      * Update the specified resource in storage.
@@ -59,12 +79,14 @@ class EpisodioController extends Controller
     {
 
         $validated = $request->validate([
-            'timestamp' => 'required|date',
+            'start' => 'required|date',
+            'end' => 'required|date',
             'intensity' => ['required',Rule::enum(Intensity::class)],
             'description' => 'string|nullable|max:255',
         ]);
  
-        $episode->timestamp = $validated['timestamp'];
+        $episode->start = $validated['start'];
+        $episode->end = $validated['end'];
         $episode->intensity = $validated['intensity'];
         $episode->description = $validated['description'];
  
