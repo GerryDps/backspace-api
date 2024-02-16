@@ -15,4 +15,19 @@ class Episodio extends Model
     * @var string
     */
     protected $table = 'Episode';
+
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'start',
+        'end',
+        'intensity',
+        'description',
+        'patient_id',
+    ];
+
 }
