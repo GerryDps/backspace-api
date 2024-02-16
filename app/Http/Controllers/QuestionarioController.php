@@ -37,7 +37,6 @@ class QuestionarioController extends Controller
         $questionario->c = $validated['q3'];
         $questionario->d = $validated['q4'];
         $questionario->e = $validated['q5'];
-        $questionario->fill($validated);
  
         $questionario->save();
         return $questionario;
