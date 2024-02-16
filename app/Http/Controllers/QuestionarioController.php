@@ -24,9 +24,20 @@ class QuestionarioController extends Controller
         $questionario = new Questionario;
         $validated = $request->validate([
             'patient_id' => 'required|integer|exists:App\Models\Paziente,id',
+            'q1'=> 'required|integer',
+            'q2'=> 'required|integer',
+            'q3'=> 'required|integer',
+            'q4'=> 'required|integer',
+            'q5'=> 'required|integer',
         ]);
  
         $questionario->id = $validated['patient_id'];
+        $questionario->a = $validated['q1'];
+        $questionario->b = $validated['q2'];
+        $questionario->c = $validated['q3'];
+        $questionario->d = $validated['q4'];
+        $questionario->e = $validated['q5'];
+        $questionario->fill($validated);
  
         $questionario->save();
         return $questionario;
