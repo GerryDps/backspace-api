@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `backspacedb`.`Episode` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `start` TIMESTAMP NOT NULL,
   `end` TIMESTAMP NOT NULL,
-  `intensity` ENUM('0', '1', '2') NOT NULL,
+  `intensity` TINYINT(1) NOT NULL,
   `description` VARCHAR(255) NULL DEFAULT NULL,
   `Patient_id` INT NOT NULL,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
