@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `backspacedb`.`Patient` (
   `surname` VARCHAR(255) NOT NULL,
   `birthday` DATE NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `type` VARCHAR(255) NULL DEFAULT NULL,
+  `type` TINYINT(1) NULL DEFAULT NULL,
   `hasDoctor` TINYINT(1) GENERATED ALWAYS AS (`Doctor_id` is not null) VIRTUAL,
   `hasQuestionary` TINYINT(1) NOT NULL DEFAULT 0,
   `Doctor_id` INT NULL DEFAULT NULL,
