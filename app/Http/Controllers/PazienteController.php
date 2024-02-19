@@ -6,16 +6,42 @@ use App\Http\Requests\StorePazienteRequest;
 use App\Http\Requests\UpdatePazienteRequest;
 use Illuminate\Http\Request;
 use App\Models\Paziente;
+use App\Models\Questionario;
 
 class PazienteController extends Controller
 {
+
+    /**
+     * Get the type of a patient
+     */
+    public function getType(Paziente $patient)
+    {
+        return $patient->type; // semplicemente return patient-type
+    }
+
+    /**
+     * Update the type of Patient
+     */
+    public static function updateType(int $id)
+    {
+        $coeff = [-0.04761908, -0.02857145,  0.09523811,  0.11428571,  0.11428572];
+        $patient = Paziente::find($id);
+        $questionario = Questionario::find($id);
+        $patient->type = (int)($questionario->a*$coeff[0]+$questionario->b*$coeff[1]+$questionario->c*$coeff[2]+$questionario->d*$coeff[3]+$questionario->e*$coeff[4]);
+        
+        $patient->save();
+        $patient->refresh();
+
+        return $patient->type;
+    }
+
     /**
      * Get patient by email
      */
     public static function findByEmail(String $email)
     {
-        $paziente = Paziente::where('email', $email)->first();
-        return $paziente;
+        $patient = Paziente::where('email', $email)->first();
+        return $patient;
     }
 
     /**
@@ -23,8 +49,8 @@ class PazienteController extends Controller
      */
     public function index()
     {
-        $paziente = Paziente::all();
-        return $paziente;
+        $patient = Paziente::all();
+        return $patient;
     }
 
     /**

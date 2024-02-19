@@ -61,6 +61,7 @@ Route::middleware(['auth:sanctum','api'])->group(function () {
 
     Route::post('/patient/update-doctor', [PazienteController::class, 'updateMedico'])->name('update-doctor');
     Route::post('/episode/getByDay', [EpisodioController::class, 'getByDay'])->name('getByDay');
+    Route::get('/patient/getType/{patient}', [PazienteController::class, 'getType'])->name('getType');
     
 });
 

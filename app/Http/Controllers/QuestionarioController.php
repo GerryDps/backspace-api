@@ -37,9 +37,13 @@ class QuestionarioController extends Controller
         $questionario->c = $validated['q3'];
         $questionario->d = $validated['q4'];
         $questionario->e = $validated['q5'];
+
+        $id = $questionario->id;
  
         $questionario->save();
-        return $questionario;
+
+        $type = PazienteController::updateType($id);
+        return $type;
     }
 
     /**
